@@ -82,6 +82,31 @@ for w in (1200, 600):
 En tema oscuro la imagen lleva `filter: brightness(.82)` para que un fondo claro
 no deslumbre; ajústar en la sección «6b. Retrato» de `styles.css`.
 
+## La URL del sitio
+
+Publicado en **https://bitmarc.github.io/** desde la rama `main`, carpeta raíz.
+
+Las rutas internas son todas relativas, así que el sitio funciona igual en
+cualquier dominio sin tocar nada. Las **únicas cuatro cosas absolutas** están en
+el `<head>` y en el bloque JSON-LD de `index.html`, y hay que actualizarlas si
+algún día compras un dominio propio:
+
+- `<meta property="og:url">`
+- `<meta property="og:image">`
+- `<link rel="canonical">`
+- el campo `"url"` del JSON-LD
+
+Tienen que ser absolutas porque los rastreadores de LinkedIn, WhatsApp y X no
+resuelven rutas relativas: con una ruta relativa el enlace se comparte sin
+imagen de vista previa.
+
+Para pasar a un dominio propio: compras el dominio (GitHub no cobra por la
+función, sólo el registrador), apuntas el DNS a GitHub Pages, lo declaras en
+Settings → Pages, marcas *Enforce HTTPS*, y verificas el dominio en el perfil
+para que nadie pueda reclamarlo si algún día borras el repo. GitHub añade un
+archivo `CNAME` a la raíz del repositorio: haz `git pull` para traértelo, porque
+si lo pierdes en un `push --force` el dominio deja de resolver.
+
 ## Pendientes
 
 - [ ] Opcional: `assets/img/og-cover.png` (1200 × 630, la vista previa al
