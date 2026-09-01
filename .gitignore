@@ -1,0 +1,11 @@
+# Material de origen: NO debe publicarse.
+# El CV lleva dirección y teléfono, y GitHub Pages sirve todo lo que subas.
+sobre mi/
+
+# Fuentes de escritorio (JetBrains Mono Nerd Font, ~134 MB).
+# El sitio carga JetBrains Mono desde Google Fonts; esto no hace falta aquí.
+fuentes/
+
+# Sistema
+Thumbs.db
+.DS_Store

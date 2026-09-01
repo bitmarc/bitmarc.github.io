@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Marco Rojas — Backend Python para sistemas de IA</title>
+<meta name="description" content="Desarrollador backend Python con más de cinco años de experiencia, especializado en sistemas de IA generativa sobre Azure: RAG, agentes conversacionales y APIs en producción.">
+<meta name="author" content="Marco Antonio Rojas García">
+<meta name="color-scheme" content="light dark">
+
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Marco Rojas — Backend Python para sistemas de IA">
+<meta property="og:description" content="Cinco años construyendo backend. Los últimos dos, haciendo que modelos no deterministas se comporten igual todos los días en producción.">
+<meta property="og:image" content="assets/img/og-cover.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="assets/css/styles.css">
+
+<script>
+/* Aplica tema e idioma antes del primer pintado para evitar parpadeo. */
+(function () {
+  var d = document.documentElement;
+  d.classList.add("js");
+  try {
+    /* Base clara. Para que en su lugar siga al sistema operativo, cambia
+       la línea de abajo por:
+         if (t !== "light" && t !== "dark") {
+           t = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+         }
+       y descomenta el bloque prefers-color-scheme en styles.css. */
+    var t = localStorage.getItem("mr-theme");
+    if (t !== "light" && t !== "dark") {
+      t = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    }
+    d.setAttribute("data-theme", t);
+    var p = new URLSearchParams(location.search).get("lang");
+    var l = (p === "en" || p === "es") ? p : localStorage.getItem("mr-lang");
+    if (l !== "en" && l !== "es") {
+      l = (navigator.language || "es").toLowerCase().indexOf("es") === 0 ? "es" : "en";
+    }
+    d.setAttribute("lang", l);
+  } catch (e) { /* almacenamiento bloqueado: se conserva lo que trae el HTML */ }
+})();
+</script>
+</head>
+<body>
+
+<a class="skip" href="#sobre-mi" data-i18n="misc.skip">Saltar al contenido</a>
+
+<!-- Barra superior: sólo móvil y tablet -->
+<div class="topbar">
+  <span class="topbar__name">Marco Rojas</span>
+  <div class="controls">
+    <div class="lang" role="group" data-i18n-attr="aria-label:rail.langAria" aria-label="Idioma del sitio">
+      <button type="button" class="lang__btn" data-lang="es" aria-pressed="true">ES</button>
+      <span class="lang__sep" aria-hidden="true">/</span>
+      <button type="button" class="lang__btn" data-lang="en" aria-pressed="false">EN</button>
+    </div>
+    <button type="button" class="theme" data-theme-toggle aria-label="Cambiar a tema oscuro">
+      <span class="theme__icon" aria-hidden="true"></span>
+    </button>
+  </div>
+</div>
+
+<div class="shell">
+
+  <!-- ─────────── Columna fija ─────────── -->
+  <header class="rail">
+    <div class="rail__top">
+      <h1 class="rail__name"><span>Marco</span> <span>Rojas</span></h1>
+      <p class="rail__role" data-i18n="rail.role">Backend Python para sistemas de IA</p>
+      <p class="rail__thesis" data-i18n="rail.thesis">Cinco años construyendo backend. Los últimos dos, haciendo que modelos no deterministas se comporten igual todos los días en producción.</p>
+
+      <nav class="rail__nav" data-i18n-attr="aria-label:rail.navAria" aria-label="Secciones del sitio">
+        <ul>
+          <li><a href="#sobre-mi"><span class="rail__mark" aria-hidden="true"></span><span data-i18n="nav.about">Sobre mí</span></a></li>
+          <li><a href="#experiencia"><span class="rail__mark" aria-hidden="true"></span><span data-i18n="nav.exp">Experiencia</span></a></li>
+          <li><a href="#proyectos"><span class="rail__mark" aria-hidden="true"></span><span data-i18n="nav.projects">Mis proyectos</span></a></li>
+          <li><a href="#tecnologias"><span class="rail__mark" aria-hidden="true"></span><span data-i18n="nav.tech">Tecnologías</span></a></li>
+          <li><a href="#contacto"><span class="rail__mark" aria-hidden="true"></span><span data-i18n="nav.contact">Contacto</span></a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="rail__foot">
+      <ul class="social">
+        <li><a href="#contacto" data-contact="email" data-i18n-attr="aria-label:contact.emailAria" aria-label="Enviar un correo">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5.5" width="18" height="13" rx="1.5"/><path d="m3.8 6.6 8.2 6 8.2-6"/></svg>
+        </a></li>
+        <li><a href="https://www.linkedin.com/in/marco-antonio-rojas-garcia-95b30220b" data-contact="linkedin" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.6 9.4h2.8v10.2H4.6z" fill="currentColor" stroke="none"/><circle cx="6" cy="5.9" r="1.7" fill="currentColor" stroke="none"/><path d="M10.2 9.4H13v1.5c.6-1.1 1.7-1.7 3.1-1.7 2.3 0 3.7 1.5 3.7 4.3v6.1h-2.8v-5.5c0-1.5-.6-2.3-1.8-2.3s-2 .9-2 2.4v5.4h-2.9z" fill="currentColor" stroke="none"/></svg>
+        </a></li>
+        <li><a href="https://github.com/bitmarc" data-contact="github" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.6a9.4 9.4 0 0 0-3 18.3c.5.1.7-.2.7-.5v-1.9c-2.6.6-3.2-1.2-3.2-1.2-.4-1.1-1.1-1.4-1.1-1.4-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.3 1.1 2.9.8.1-.6.3-1.1.6-1.3-2.1-.2-4.3-1.1-4.3-4.7 0-1 .4-1.9.9-2.5-.1-.3-.4-1.3.1-2.6 0 0 .8-.3 2.6.9a8.9 8.9 0 0 1 4.7 0c1.8-1.2 2.6-.9 2.6-.9.5 1.3.2 2.3.1 2.6.6.6.9 1.5.9 2.5 0 3.6-2.2 4.4-4.3 4.7.3.3.6 1 .6 1.9v2.8c0 .3.2.6.7.5A9.4 9.4 0 0 0 12 2.6z" fill="currentColor" stroke="none"/></svg>
+        </a></li>
+        <li><a href="https://instagram.com/bitmarc01" data-contact="instagram" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.4" y="3.4" width="17.2" height="17.2" rx="4.8"/><circle cx="12" cy="12" r="3.9"/><circle cx="16.9" cy="7.1" r="1.05" fill="currentColor" stroke="none"/></svg>
+        </a></li>
+        <li><a href="#contacto" data-contact="whatsapp" target="_blank" rel="noopener" aria-label="WhatsApp">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.6a8.4 8.4 0 0 0-7.2 12.8l-1.2 4 4.1-1.2A8.4 8.4 0 1 0 12 3.6z"/><path d="M9.1 8.4c.2-.4.4-.4.6-.4h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2 0 .4-.1.5l-.5.6c-.1.2-.2.3 0 .6a7.2 7.2 0 0 0 3 2.6c.3.1.5.1.6 0l.7-.8c.2-.2.3-.2.5-.1l1.7.9c.2.1.4.2.4.4"/></svg>
+        </a></li>
+      </ul>
+
+      <p class="rail__place" data-i18n="rail.location">Ciudad de México · Disponible en remoto</p>
+
+      <div class="controls controls--rail">
+        <div class="lang" role="group" data-i18n-attr="aria-label:rail.langAria" aria-label="Idioma del sitio">
+          <button type="button" class="lang__btn" data-lang="es" aria-pressed="true">ES</button>
+          <span class="lang__sep" aria-hidden="true">/</span>
+          <button type="button" class="lang__btn" data-lang="en" aria-pressed="false">EN</button>
+        </div>
+        <button type="button" class="theme" data-theme-toggle aria-label="Cambiar a tema oscuro">
+          <span class="theme__icon" aria-hidden="true"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ─────────── Contenido ─────────── -->
+  <main class="stream">
+
+    <!-- Sobre mí -->
+    <section class="section" id="sobre-mi" aria-labelledby="t-sobre-mi">
+      <div class="section__head reveal">
+        <h2 class="section__label" id="t-sobre-mi" data-i18n="sec.about">Sobre mí</h2>
+        <span class="section__rule" aria-hidden="true"></span>
+      </div>
+      <figure class="portrait reveal">
+        <picture>
+          <source type="image/webp"
+                  srcset="assets/img/me-600.webp 600w, assets/img/me-1200.webp 1200w"
+                  sizes="(min-width: 1024px) 550px, 100vw">
+          <img src="assets/img/me-600.jpg"
+               srcset="assets/img/me-600.jpg 600w, assets/img/me-1200.jpg 1200w"
+               sizes="(min-width: 1024px) 550px, 100vw"
+               width="1200" height="800" decoding="async"
+               data-i18n-attr="alt:about.photoAlt"
+               alt="Marco Rojas, retrato en blanco y negro">
+        </picture>
+      </figure>
+
+      <div class="prose reveal">
+        <p data-i18n="about.p1">Soy ingeniero en Telemática por el Instituto Politécnico Nacional. Empecé escribiendo microservicios y automatización para redes de telecomunicaciones, seguí con sistemas de operaciones en el sector financiero, y desde hace poco más de dos años construyo soluciones de IA generativa sobre Azure.</p>
+        <p data-i18n="about.p2">En el camino aprendí lo que hoy define mi trabajo: la consistencia de un agente no se arregla ajustando el prompt. Se diseña — con orquestación, tools que encapsulan la lógica de negocio y validaciones en el backend que deciden qué puede hacer el modelo y bajo qué condiciones.</p>
+        <p data-i18n="about.p3">Me interesa la parte del problema donde el reto técnico se cruza con el de negocio: traducir una necesidad real en un sistema que se pueda medir, observar y sostener en producción.</p>
+      </div>
+    </section>
+
+    <!-- Experiencia -->
+    <section class="section" id="experiencia" aria-labelledby="t-experiencia">
+      <div class="section__head reveal">
+        <h2 class="section__label" id="t-experiencia" data-i18n="sec.exp">Experiencia</h2>
+        <span class="section__rule" aria-hidden="true"></span>
+      </div>
+      <ol class="jobs">
+
+        <li class="job reveal">
+          <p class="job__period"><time datetime="2025-05">2025</time><span aria-hidden="true"> — </span><time datetime="2026-06">2026</time></p>
+          <div class="job__body">
+            <h3 class="job__role" data-i18n="exp.mobiik.role">Desarrollador IA</h3>
+            <p class="job__org">Mobiik <span class="job__note" data-i18n="exp.mobiik.note">· Ciudad de México</span></p>
+            <ul class="job__list">
+              <li data-i18n="exp.mobiik.b1">Lideré parte del backend de soluciones de IA conversacional por voz y texto sobre Azure.</li>
+              <li data-i18n="exp.mobiik.b2">Diseñé chatbots multimodales con memoria persistente en Cosmos DB y MongoDB.</li>
+              <li data-i18n="exp.mobiik.b3">Implementé pipelines RAG con Azure AI Search y embeddings, y desarrollé tools que ampliaban las capacidades de los agentes: llamadas a APIs externas, limpieza de datos y recuperación de información estructurada.</li>
+              <li data-i18n="exp.mobiik.b4">Integré Azure Cost Management y Log Analytics para dar visibilidad sobre uso, costo y desempeño de los agentes en producción.</li>
+            </ul>
+            <ul class="chips">
+              <li>Python</li><li>FastAPI</li><li>Azure OpenAI</li><li>Azure AI Search</li><li>Cosmos DB</li><li>MongoDB</li><li>Docker</li><li>GitHub Actions</li>
+            </ul>
+
+            <button type="button" class="job__more" aria-haspopup="dialog" data-modal-open="proj-mobiik">
+              <span data-i18n="exp.mobiik.cta">Ver proyectos</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13m-5.5-6L19 12l-6.5 6"/></svg>
+            </button>
+
+            <dialog class="modal" id="proj-mobiik" aria-labelledby="m-mobiik-org m-mobiik-title">
+              <div class="modal__panel">
+                <header class="modal__head">
+                  <div>
+                    <p class="modal__org" id="m-mobiik-org">Mobiik <span data-i18n="exp.mobiik.role">Desarrollador IA</span></p>
+                    <h2 class="modal__title" id="m-mobiik-title" data-i18n="modal.label">Proyectos</h2>
+                  </div>
+                  <button type="button" class="modal__close" data-modal-close data-i18n-attr="aria-label:modal.close" aria-label="Cerrar">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+                  </button>
+                </header>
+
+                <div class="modal__body">
+                  <ul class="projects">
+
+                    <li class="card">
+                      <p class="card__client">Megacable <span data-i18n="proj.megacable.sector">· Telecomunicaciones</span></p>
+                      <h3 class="card__title" data-i18n="proj.megacable.title">Asistente RAG interno con control de acceso</h3>
+                      <p class="card__text" data-i18n="proj.megacable.context">Asistente conversacional para que colaboradores de distintas áreas resuelvan dudas respetando sus roles y permisos, sobre una base de conocimiento que se actualiza dinámicamente.</p>
+                      <p class="card__text" data-i18n="proj.megacable.role">Desarrollé el módulo de búsqueda inteligente de documentos y el de personalización de usuario, y trabajé en el control del comportamiento del agente: un system prompt acotado, tools para las acciones con lógica de negocio y validaciones en backend sobre qué herramienta podía usar y bajo qué condiciones.</p>
+
+                      <div class="delta" data-delta>
+                        <p class="delta__label" data-i18n="proj.megacable.metric">Conversaciones fuera del flujo esperado</p>
+                        <div class="delta__row">
+                          <span class="delta__key" data-i18n="delta.before">antes</span>
+                          <span class="delta__track"><span class="delta__fill delta__fill--before" style="--v:100"></span></span>
+                          <span class="delta__val"><span data-count="25">25</span>&thinsp;%</span>
+                        </div>
+                        <div class="delta__row">
+                          <span class="delta__key" data-i18n="delta.after">después</span>
+                          <span class="delta__track"><span class="delta__fill delta__fill--after" style="--v:20"></span></span>
+                          <span class="delta__val"><span data-count="5">5</span>&thinsp;%</span>
+                        </div>
+                        <p class="delta__note" data-i18n="proj.megacable.note">80 % menos casos fuera de flujo. El negocio ganó la confianza para ampliar el agente a más áreas de la empresa.</p>
+                      </div>
+
+                      <ul class="chips">
+                        <li>Python</li><li>FastAPI</li><li>RAG</li><li>Azure AI Search</li><li>Azure OpenAI</li><li>Angular</li>
+                      </ul>
+                    </li>
+
+                    <li class="card">
+                      <p class="card__client">Tec de Monterrey <span data-i18n="proj.tec.sector">· Educación</span></p>
+                      <h3 class="card__title" data-i18n="proj.tec.title">Chatbot de normativa académica</h3>
+                      <p class="card__text" data-i18n="proj.tec.context">Chatbot para que estudiantes y profesores de preparatoria resuelvan dudas sobre la normativa interna del instituto, con arquitectura RAG.</p>
+                      <p class="card__text" data-i18n="proj.tec.role">Construí la lógica interna del chatbot y su API, la orquestación de la recuperación de fragmentos para el modelo y el manejo del histórico de conversación. Definí también el formato, el tono y las reglas de referenciación de fuentes.</p>
+
+                      <div class="delta" data-delta>
+                        <p class="delta__label" data-i18n="proj.tec.metric">Tasa global de respuestas incorrectas</p>
+                        <div class="delta__row">
+                          <span class="delta__key" data-i18n="delta.before">antes</span>
+                          <span class="delta__track"><span class="delta__fill delta__fill--before" style="--v:100"></span></span>
+                          <span class="delta__val"><span data-count="36">36</span>&thinsp;%</span>
+                        </div>
+                        <div class="delta__row">
+                          <span class="delta__key" data-i18n="delta.after">después</span>
+                          <span class="delta__track"><span class="delta__fill delta__fill--after" style="--v:36"></span></span>
+                          <span class="delta__val"><span data-count="13">13</span>&thinsp;%</span>
+                        </div>
+                        <p class="delta__note" data-i18n="proj.tec.note">64 % menos respuestas incorrectas. Suficiente confianza para extender el producto y evaluar una fase a nivel universidad.</p>
+                      </div>
+
+                      <ul class="chips">
+                        <li>Python</li><li>FastAPI</li><li>RAG</li><li>Azure AI Search</li><li>Azure OpenAI</li>
+                      </ul>
+                    </li>
+
+                    <li class="card">
+                      <p class="card__client" data-i18n="proj.voz.client">Multinacional de alimentos · Prueba de concepto</p>
+                      <h3 class="card__title" data-i18n="proj.voz.title">Agente de voz para ventas en ruta</h3>
+                      <p class="card__text" data-i18n="proj.voz.context">Agente de voz para que el personal de ventas resolviera dudas sobre productos, clientes, promociones y ventas mientras visita clientes en ruta.</p>
+                      <p class="card__text" data-i18n="proj.voz.role">Lideré el desarrollo de las tools del agente y de las Azure Functions que procesaban el catálogo de la fuente de conocimiento. Las tools hacían consultas, cálculos y agregaciones sobre la base de datos, y devolvían tablas e imágenes además de texto.</p>
+                      <p class="outcome" data-i18n="proj.voz.outcome">Entregado dentro del plazo acordado y probado en campo por el equipo de ventas, con buena respuesta.</p>
+                      <ul class="chips">
+                        <li>Python</li><li>Azure OpenAI Realtime</li><li>Azure Functions</li><li>Cosmos DB</li><li>Blob Storage</li><li>Entra ID</li>
+                      </ul>
+                    </li>
+
+                  </ul>
+                </div>
+              </div>
+            </dialog>
+          </div>
+        </li>
+
+        <li class="job reveal">
+          <p class="job__period"><time datetime="2024-07">2024</time><span aria-hidden="true"> — </span><time datetime="2025-04">2025</time></p>
+          <div class="job__body">
+            <h3 class="job__role" data-i18n="exp.citi.role">Desarrollador Python y SQL</h3>
+            <p class="job__org">Citi <span class="job__note" data-i18n="exp.citi.note">· Proyecto Finsus, sector financiero</span></p>
+            <ul class="job__list">
+              <li data-i18n="exp.citi.b1">Desarrollé módulos y extensiones del sistema interno de operaciones sobre PostgreSQL, con interfaces GLADE y plantillas Glabels.</li>
+              <li data-i18n="exp.citi.b2">Analicé, corregí y optimicé funciones en PL/pgSQL.</li>
+              <li data-i18n="exp.citi.b3">Construí APIs con FastAPI para agilizar las operaciones CRUD del sistema.</li>
+              <li data-i18n="exp.citi.b4">Automaticé procedimientos con ETLs en Pentaho Data Integration.</li>
+            </ul>
+            <ul class="chips">
+              <li>Python</li><li>FastAPI</li><li>PostgreSQL</li><li>PL/pgSQL</li><li>Pentaho DI</li><li>GLADE</li>
+            </ul>
+
+            <button type="button" class="job__more" aria-haspopup="dialog" data-modal-open="proj-citi">
+              <span data-i18n="exp.citi.cta">Ver proyecto</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13m-5.5-6L19 12l-6.5 6"/></svg>
+            </button>
+
+            <dialog class="modal" id="proj-citi" aria-labelledby="m-citi-org m-citi-title">
+              <div class="modal__panel">
+                <header class="modal__head">
+                  <div>
+                    <p class="modal__org" id="m-citi-org">Citi <span data-i18n="exp.citi.role">Desarrollador Python y SQL</span></p>
+                    <h2 class="modal__title" id="m-citi-title" data-i18n="modal.label">Proyectos</h2>
+                  </div>
+                  <button type="button" class="modal__close" data-modal-close data-i18n-attr="aria-label:modal.close" aria-label="Cerrar">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+                  </button>
+                </header>
+
+                <div class="modal__body">
+                  <ul class="projects">
+
+                    <li class="card">
+                      <p class="card__client">Finsus <span data-i18n="proj.finsus.sector">· Sector financiero</span></p>
+                      <h3 class="card__title" data-i18n="proj.finsus.title">Operaciones internas y estados de cuenta</h3>
+                      <p class="card__text" data-i18n="proj.finsus.context">Sistema interno de operaciones de una institución financiera, con foco en la generación de estados de cuenta de varios de sus productos.</p>
+                      <p class="card__text" data-i18n="proj.finsus.role">Desarrollé módulos y extensiones sobre PostgreSQL, APIs en FastAPI para las operaciones CRUD y ETLs en Pentaho para automatizar procesos que antes eran manuales.</p>
+                      <ul class="chips">
+                        <li>PostgreSQL</li><li>PL/pgSQL</li><li>FastAPI</li><li>Pentaho DI</li><li>GLADE</li>
+                      </ul>
+                    </li>
+
+                  </ul>
+                </div>
+              </div>
+            </dialog>
+          </div>
+        </li>
+
+        <li class="job reveal">
+          <p class="job__period"><time datetime="2021-07">2021</time><span aria-hidden="true"> — </span><time datetime="2024-05">2024</time></p>
+          <div class="job__body">
+            <h3 class="job__role" data-i18n="exp.emqu.role">Desarrollador Python · Technical Lead</h3>
+            <p class="job__org">EMQU Technologies <span class="job__note" data-i18n="exp.emqu.note">· Cliente AT&amp;T</span></p>
+            <ul class="job__list">
+              <li data-i18n="exp.emqu.b1">Desarrollé microservicios en Python con Flask, Flask-RestX y FastAPI.</li>
+              <li data-i18n="exp.emqu.b2">Automaticé la conexión, extracción y procesamiento de datos sobre dispositivos de red vía SSH con Netmiko, Paramiko, Pandas y TextFSM.</li>
+              <li data-i18n="exp.emqu.b3">Implementé bases de datos relacionales y no relacionales — MongoDB, Neo4j, InfluxDB, MySQL y Postgres con Hasura — según lo que pedía cada proyecto.</li>
+              <li data-i18n="exp.emqu.b4">Lideré al equipo backend del sistema de monitoreo y trazabilidad de nodos de red.</li>
+            </ul>
+            <ul class="chips">
+              <li>Python</li><li>Flask</li><li>FastAPI</li><li>MongoDB</li><li>Neo4j</li><li>InfluxDB</li><li>Hasura</li><li>Dash</li><li>Angular</li><li>Prefect</li>
+            </ul>
+
+            <button type="button" class="job__more" aria-haspopup="dialog" data-modal-open="proj-emqu">
+              <span data-i18n="exp.emqu.cta">Ver proyecto</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13m-5.5-6L19 12l-6.5 6"/></svg>
+            </button>
+
+            <dialog class="modal" id="proj-emqu" aria-labelledby="m-emqu-org m-emqu-title">
+              <div class="modal__panel">
+                <header class="modal__head">
+                  <div>
+                    <p class="modal__org" id="m-emqu-org">EMQU Technologies <span data-i18n="exp.emqu.role">Desarrollador Python · Technical Lead</span></p>
+                    <h2 class="modal__title" id="m-emqu-title" data-i18n="modal.label">Proyectos</h2>
+                  </div>
+                  <button type="button" class="modal__close" data-modal-close data-i18n-attr="aria-label:modal.close" aria-label="Cerrar">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+                  </button>
+                </header>
+
+                <div class="modal__body">
+                  <ul class="projects">
+
+                    <li class="card">
+                      <p class="card__client">AT&amp;T <span data-i18n="proj.att.sector">· Telecomunicaciones</span></p>
+                      <h3 class="card__title" data-i18n="proj.att.title">Monitoreo y trazabilidad de nodos de red</h3>
+                      <p class="card__text" data-i18n="proj.att.context">Sistema para monitorear y trazar el estado de una red de nodos y ejecutar sobre ellos flujos de configuración.</p>
+                      <p class="card__text" data-i18n="proj.att.role">Lideré al equipo backend en el diseño y la construcción del sistema, desde la extracción de datos de los dispositivos hasta la ejecución de los flujos.</p>
+                      <p class="outcome" data-i18n="proj.att.outcome">Redujo de forma significativa los tiempos de configuración y de generación de reportes.</p>
+                      <ul class="chips">
+                        <li>Python</li><li>FastAPI</li><li>Netmiko</li><li>TextFSM</li><li>InfluxDB</li><li>Prefect</li>
+                      </ul>
+                    </li>
+
+                  </ul>
+                </div>
+              </div>
+            </dialog>
+          </div>
+        </li>
+
+      </ol>
+    </section>
+
+    <!-- Mis proyectos -->
+    <section class="section" id="proyectos" aria-labelledby="t-proyectos">
+      <div class="section__head reveal">
+        <h2 class="section__label" id="t-proyectos" data-i18n="sec.projects">Mis proyectos</h2>
+        <span class="section__rule" aria-hidden="true"></span>
+      </div>
+      <ul class="projects">
+
+        <li class="card reveal">
+          <p class="card__client" data-i18n="mine.mexlex.client">Proyecto personal · 2026</p>
+          <h3 class="card__title" data-i18n="mine.mexlex.title">MexlexAgent — agente RAG sobre legislación mexicana</h3>
+          <p class="card__text" data-i18n="mine.mexlex.context">Agente conversacional para consultar leyes mexicanas y la Constitución, construido para llegar al fondo de LangChain y LangGraph sobre el ecosistema de Azure.</p>
+          <p class="card__text" data-i18n="mine.mexlex.role">Ingesta de PDFs con chunking por frontera de artículo, retrieval híbrido en Azure AI Search con metadata filtrable, y un agente ReAct con tools de búsqueda legal, lookup exacto de artículo y búsqueda web opcional. La interfaz es Chainlit con streaming, y el historial se persiste en Cosmos DB.</p>
+          <p class="outcome" data-i18n="mine.mexlex.outcome">Ocho fases cerradas, con una suite de evaluación que uso como regresión cada vez que toco prompts o chunking, y disclaimers atados a la vigencia real de cada ley.</p>
+          <ul class="chips">
+            <li>Python</li><li>LangChain</li><li>LangGraph</li><li>Azure OpenAI</li><li>Azure AI Search</li><li>Cosmos DB</li><li>Chainlit</li><li>LangSmith</li>
+          </ul>
+          <ul class="card__links">
+            <li><a class="card__link" href="https://github.com/bitmarc/MexlexAgent" target="_blank" rel="noopener">
+              <span data-i18n="mine.mexlex.repo">Ver el repositorio</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 16.5 16.5 7.5M9 7.5h7.5V15"/></svg>
+            </a></li>
+          </ul>
+        </li>
+
+        <li class="card reveal">
+          <p class="card__client" data-i18n="mine.poke.client">Proyecto personal · 2026</p>
+          <h3 class="card__title" data-i18n="mine.poke.title">poke-visor — OCR de capturas sin servidor</h3>
+          <p class="card__text" data-i18n="mine.poke.context">Azure Function que procesa capturas del perfil de Pokémon GO subidas a Blob Storage y extrae de ellas las estadísticas del jugador.</p>
+          <p class="card__text" data-i18n="mine.poke.role">Se dispara con Event Grid al crearse el blob, extrae el texto con Azure AI Document Intelligence, infiere el equipo a partir del color de las bandas laterales de la imagen y escribe el resultado en Cosmos DB.</p>
+          <p class="outcome" data-i18n="mine.poke.outcome">Locks de idempotencia en Cosmos para que los reintentos de Event Grid no dupliquen trabajo, y un contrato estricto de nombre de blob que valida la entrada antes de gastar una llamada al servicio de OCR.</p>
+          <ul class="chips">
+            <li>Python</li><li>Azure Functions</li><li>Event Grid</li><li>Document Intelligence</li><li>Blob Storage</li><li>Cosmos DB</li>
+          </ul>
+          <ul class="card__links">
+            <li><a class="card__link" href="https://github.com/bitmarc/poke-visor" target="_blank" rel="noopener">
+              <span data-i18n="mine.poke.repo">Ver el repositorio</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 16.5 16.5 7.5M9 7.5h7.5V15"/></svg>
+            </a></li>
+          </ul>
+        </li>
+
+        <li class="card reveal">
+          <p class="card__client" data-i18n="mine.recomendautos.client">Proyecto académico · 2020–2021</p>
+          <h3 class="card__title" data-i18n="mine.recomendautos.title">Recomendautos — recomendador de autos con app Android</h3>
+          <p class="card__text" data-i18n="mine.recomendautos.context">Sistema de recomendación de automóviles en dos piezas: un servidor que expone la API y el modelo, y una aplicación Android que lo consume.</p>
+          <p class="card__text" data-i18n="mine.recomendautos.role">Construí el servidor en Flask con Flask-RESTful y MySQL, el scraping del catálogo con Scrapy y el modelo de agrupamiento con k-modes y scikit-learn. La app Android, en Java, habla con la API mediante Retrofit.</p>
+          <ul class="chips">
+            <li>Python</li><li>Flask</li><li>Flask-RESTful</li><li>MySQL</li><li>Scrapy</li><li>scikit-learn</li><li>k-modes</li><li>Java</li><li>Android</li><li>Retrofit</li>
+          </ul>
+          <ul class="card__links">
+            <li><a class="card__link" href="https://github.com/bitmarc/Recomendautos_Server" target="_blank" rel="noopener">
+              <span data-i18n="mine.recomendautos.repo">Servidor y modelo</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 16.5 16.5 7.5M9 7.5h7.5V15"/></svg>
+            </a></li>
+            <li><a class="card__link" href="https://github.com/bitmarc/Recommender" target="_blank" rel="noopener">
+              <span data-i18n="mine.recomendautos.repoApp">App Android</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 16.5 16.5 7.5M9 7.5h7.5V15"/></svg>
+            </a></li>
+          </ul>
+        </li>
+
+      </ul>
+    </section>
+    <!-- Tecnologías -->
+    <section class="section" id="tecnologias" aria-labelledby="t-tecnologias">
+      <div class="section__head reveal">
+        <h2 class="section__label" id="t-tecnologias" data-i18n="sec.tech">Tecnologías</h2>
+        <span class="section__rule" aria-hidden="true"></span>
+      </div>
+
+      <dl class="stack">
+        <div class="stack__group reveal">
+          <dt data-i18n="tech.langs">Lenguajes</dt>
+          <dd><ul class="chips"><li>Python</li><li>SQL</li><li>PL/pgSQL</li><li>TypeScript</li><li>JavaScript</li><li>Bash</li></ul></dd>
+        </div>
+        <div class="stack__group reveal">
+          <dt data-i18n="tech.backend">Backend y APIs</dt>
+          <dd><ul class="chips"><li>FastAPI</li><li>Flask</li><li>Flask-RestX</li><li>Pydantic</li><li>REST</li><li>GraphQL</li><li>Hasura</li></ul></dd>
+        </div>
+        <div class="stack__group reveal">
+          <dt data-i18n="tech.ai">IA generativa</dt>
+          <dd><ul class="chips"><li>LLMs</li><li>RAG</li><li>Azure OpenAI</li><li>Azure AI Search</li><li>Embeddings</li><li>Prompt engineering</li><li>Tool calling</li><li>Realtime API</li><li>Chainlit</li></ul></dd>
+        </div>
+        <div class="stack__group reveal">
+          <dt data-i18n="tech.data">Datos</dt>
+          <dd><ul class="chips"><li>PostgreSQL</li><li>MySQL</li><li>MongoDB</li><li>Cosmos DB</li><li>Neo4j</li><li>InfluxDB</li><li>Pandas</li><li>Pentaho DI</li><li>Prefect</li></ul></dd>
+        </div>
+        <div class="stack__group reveal">
+          <dt data-i18n="tech.cloud">Nube y entrega</dt>
+          <dd><ul class="chips"><li>Azure</li><li>Azure Functions</li><li>Blob Storage</li><li>Entra ID</li><li>Log Analytics</li><li>Cost Management</li><li>Docker</li><li>GitHub Actions</li><li>AWS</li></ul></dd>
+        </div>
+        <div class="stack__group reveal">
+          <dt data-i18n="tech.ui">Interfaces y datos visuales</dt>
+          <dd><ul class="chips"><li>Plotly</li><li>Dash</li><li>Streamlit</li><li>Angular</li><li>D3</li><li>Leaflet</li></ul></dd>
+        </div>
+        <div class="stack__group reveal">
+          <dt data-i18n="tech.net">Redes y automatización</dt>
+          <dd><ul class="chips"><li>Netmiko</li><li>Paramiko</li><li>TextFSM</li><li>SSH</li><li>Mermaid</li></ul></dd>
+        </div>
+      </dl>
+
+      <div class="edu reveal">
+        <h3 class="edu__title" data-i18n="edu.title">Formación</h3>
+        <ul class="edu__list">
+          <li><span class="edu__what" data-i18n="edu.i1">Ingeniería en Telemática — UPIITA, IPN</span><span class="edu__when">2021</span></li>
+          <li><span class="edu__what" data-i18n="edu.i2">Azure AI Fundamentals — Microsoft</span><span class="edu__when">2025</span></li>
+          <li><span class="edu__what" data-i18n="edu.i3">Machine Learning y Data Science — Udemy</span><span class="edu__when">2021</span></li>
+          <li><span class="edu__what" data-i18n="edu.i4">AWS Cloud Practitioner — AWS Academy</span><span class="edu__when">2020</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Contacto -->
+    <section class="section" id="contacto" aria-labelledby="t-contacto">
+      <div class="section__head reveal">
+        <h2 class="section__label" id="t-contacto" data-i18n="sec.contact">Contacto</h2>
+        <span class="section__rule" aria-hidden="true"></span>
+      </div>
+
+      <div class="contact reveal">
+        <p class="contact__lead" data-i18n="contact.lead">Estoy abierto a escuchar propuestas de backend, de IA generativa o del cruce entre ambas.</p>
+
+        <a class="cta" href="#contacto" data-contact="email">
+          <span data-i18n="contact.cta">Hablemos</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13m-5.5-6L19 12l-6.5 6"/></svg>
+        </a>
+
+        <ul class="contact__list">
+          <li>
+            <span class="contact__key" data-i18n="contact.kEmail">Correo</span>
+            <a href="#contacto" data-contact="email"><span data-contact-text="email">marcoarojas.95 [arroba] gmail.com</span></a>
+          </li>
+          <li>
+            <span class="contact__key">LinkedIn</span>
+            <a href="https://www.linkedin.com/in/marco-antonio-rojas-garcia-95b30220b" data-contact="linkedin" target="_blank" rel="noopener"><span data-contact-text="linkedin">linkedin.com/in/marco-antonio-rojas-garcia-95b30220b</span></a>
+          </li>
+          <li>
+            <span class="contact__key">GitHub</span>
+            <a href="https://github.com/bitmarc" data-contact="github" target="_blank" rel="noopener"><span data-contact-text="github">github.com/bitmarc</span></a>
+          </li>
+          <li>
+            <span class="contact__key">Instagram</span>
+            <a href="https://instagram.com/bitmarc01" data-contact="instagram" target="_blank" rel="noopener"><span data-contact-text="instagram">instagram.com/bitmarc01</span></a>
+          </li>
+          <li>
+            <span class="contact__key" data-i18n="contact.kPhone">Teléfono</span>
+            <a href="#contacto" data-contact="phone"><span data-contact-text="phone">+52 55 2764 3170</span></a>
+          </li>
+          <li>
+            <span class="contact__key" data-i18n="contact.kPlace">Ubicación</span>
+            <span class="contact__plain" data-i18n="contact.vPlace">Ciudad de México · Disponible en remoto</span>
+          </li>
+        </ul>
+      </div>
+
+      <footer class="colophon reveal">
+        <p data-i18n="footer.built">Diseñado y construido por Marco Rojas. Sitio estático, sin framework ni servidor.</p>
+      </footer>
+    </section>
+
+  </main>
+</div>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Marco Antonio Rojas García",
+  "alternateName": "Marco Rojas",
+  "jobTitle": "Backend Python / AI Engineer",
+  "email": "mailto:marcoarojas.95@gmail.com",
+  "address": { "@type": "PostalAddress", "addressLocality": "Ciudad de México", "addressCountry": "MX" },
+  "alumniOf": { "@type": "CollegeOrUniversity", "name": "Instituto Politécnico Nacional — UPIITA" },
+  "knowsLanguage": ["es", "en"],
+  "knowsAbout": ["Python", "FastAPI", "PostgreSQL", "Azure", "RAG", "LLM agents", "Prompt engineering"]
+}
+</script>
+
+<script src="assets/js/content.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
