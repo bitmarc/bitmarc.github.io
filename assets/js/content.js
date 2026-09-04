@@ -22,7 +22,7 @@ var CONTENT = {
 
     "rail.role": "Backend Python para sistemas de IA",
     "rail.thesis": "Cinco años construyendo backend. Los últimos dos, haciendo que modelos no deterministas se comporten igual todos los días en producción.",
-    "rail.location": "Ciudad de México · Disponible en remoto",
+    "rail.location": "Huixquilucan México. · Disponible en remoto",
     "rail.navAria": "Secciones del sitio",
     "rail.langAria": "Idioma del sitio",
 
@@ -148,7 +148,7 @@ var CONTENT = {
     "contact.kEmail": "Correo",
     "contact.kPhone": "Teléfono",
     "contact.kPlace": "Ubicación",
-    "contact.vPlace": "Ciudad de México · Disponible en remoto",
+    "contact.vPlace": "Huixquilucan México · Disponible en remoto",
 
     "footer.built": "Diseñado y construido por Marco Rojas. Sitio estático, sin framework ni servidor."
   },
