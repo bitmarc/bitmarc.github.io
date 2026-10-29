@@ -391,6 +391,40 @@
       <ul class="projects">
 
         <li class="card reveal">
+          <p class="card__client" data-i18n="mine.recibo.client">Proyecto personal · 2026</p>
+          <h3 class="card__title" data-i18n="mine.recibo.title">ReciboDirecto — comprobantes de pago para prestadores de servicios</h3>
+          <p class="card__text" data-i18n="mine.recibo.context">Aplicación web para que un prestador de servicios emita, entregue y conserve comprobantes de pago no fiscales y lleve el control de lo cobrado y lo pendiente. Su cliente no instala nada: abre una liga pública con su recibo.</p>
+          <p class="card__text" data-i18n="mine.recibo.role">Backend en FastAPI con plantillas Jinja2 y HTMX, PostgreSQL con SQLAlchemy async y Alembic, y PDF bajo demanda con WeasyPrint sobre Blob Storage. El cobro es una sola transacción atómica: selecciona o crea cliente y trabajo, registra el pago, asigna folio y congela el recibo, así que nunca queda un pago sin recibo ni al revés.</p>
+          <p class="outcome" data-i18n="mine.recibo.outcome">Siete hitos cerrados y más de 600 pruebas en verde, con integración contra Postgres y Azurite reales, idempotencia generada en el servidor contra el doble clic con mala señal, dinero siempre en centavos enteros y aislamiento por cuenta verificado recorriendo las rutas.</p>
+          <ul class="chips">
+            <li>Python</li><li>FastAPI</li><li>HTMX</li><li>Jinja2</li><li>PostgreSQL</li><li>SQLAlchemy</li><li>Alembic</li><li>WeasyPrint</li><li>Blob Storage</li><li>App Service</li><li>Docker</li>
+          </ul>
+          <ul class="card__links">
+            <li><a class="card__link" href="https://github.com/bitmarc/reciboDirecto" target="_blank" rel="noopener">
+              <span data-i18n="mine.recibo.repo">Ver el repositorio</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 16.5 16.5 7.5M9 7.5h7.5V15"/></svg>
+            </a></li>
+          </ul>
+        </li>
+
+        <li class="card reveal">
+          <p class="card__client" data-i18n="mine.pogo.client">Proyecto personal · 2026</p>
+          <h3 class="card__title" data-i18n="mine.pogo.title">PoGo-Comunity-Agent — copiloto para una comunidad de Pokémon GO</h3>
+          <p class="card__text" data-i18n="mine.pogo.context">Copiloto para los administradores de una comunidad local de Pokémon GO: a partir de una conversación arma paquetes listos para publicar, con el texto adaptado a cada canal, una imagen con la identidad de la comunidad y el archivo de calendario.</p>
+          <p class="card__text" data-i18n="mine.pogo.role">Agente sobre Microsoft Agent Framework con interfaz en Chainlit y tools de búsqueda web con Tavily, acotada a fuentes oficiales o abierta, y de pronóstico del clima con Open-Meteo. El historial vive en Postgres sobre Neon, las imágenes en Blob Storage con Managed Identity, y el acceso pasa por Google OAuth con una lista de correos autorizados.</p>
+          <p class="outcome" data-i18n="mine.pogo.outcome">En producción en Azure Container Apps, con infraestructura en Bicep y despliegue con GitHub Actions en cada push. El agente cita la fuente de cada dato de evento y se niega a inventar fechas que no puede verificar.</p>
+          <ul class="chips">
+            <li>Python</li><li>Microsoft Agent Framework</li><li>Azure OpenAI</li><li>Chainlit</li><li>Tavily</li><li>PostgreSQL</li><li>Neon</li><li>Blob Storage</li><li>Container Apps</li><li>Bicep</li>
+          </ul>
+          <ul class="card__links">
+            <li><a class="card__link" href="https://github.com/bitmarc/PoGo-Comunity-Agent" target="_blank" rel="noopener">
+              <span data-i18n="mine.pogo.repo">Ver el repositorio</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 16.5 16.5 7.5M9 7.5h7.5V15"/></svg>
+            </a></li>
+          </ul>
+        </li>
+
+        <li class="card reveal">
           <p class="card__client" data-i18n="mine.mexlex.client">Proyecto personal · 2026</p>
           <h3 class="card__title" data-i18n="mine.mexlex.title">MexlexAgent — agente RAG sobre legislación mexicana</h3>
           <p class="card__text" data-i18n="mine.mexlex.context">Agente conversacional para consultar leyes mexicanas y la Constitución, construido para llegar al fondo de LangChain y LangGraph sobre el ecosistema de Azure.</p>
@@ -487,8 +521,9 @@
       <div class="edu reveal">
         <h3 class="edu__title" data-i18n="edu.title">Formación</h3>
         <ul class="edu__list">
-          <li><span class="edu__what" data-i18n="edu.i1">Ingeniería en Telemática — UPIITA, IPN</span><span class="edu__when">2021</span></li>
+          <li><span class="edu__what" data-i18n="edu.i5">Azure AI Apps and Agents Developer Associate (AI-103) — Microsoft</span><span class="edu__when">2026</span></li>
           <li><span class="edu__what" data-i18n="edu.i2">Azure AI Fundamentals — Microsoft</span><span class="edu__when">2025</span></li>
+          <li><span class="edu__what" data-i18n="edu.i1">Ingeniería en Telemática — UPIITA, IPN</span><span class="edu__when">2021</span></li>
           <li><span class="edu__what" data-i18n="edu.i3">Machine Learning y Data Science — Udemy</span><span class="edu__when">2021</span></li>
           <li><span class="edu__what" data-i18n="edu.i4">AWS Cloud Practitioner — AWS Academy</span><span class="edu__when">2020</span></li>
         </ul>

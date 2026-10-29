@@ -104,6 +104,20 @@ var CONTENT = {
     "proj.finsus.context": "Sistema interno de operaciones de una institución financiera, con foco en la generación de estados de cuenta de varios de sus productos.",
     "proj.finsus.role": "Desarrollé módulos y extensiones sobre PostgreSQL, APIs en FastAPI para las operaciones CRUD y ETLs en Pentaho para automatizar procesos que antes eran manuales.",
 
+    "mine.recibo.client": "Proyecto personal · 2026",
+    "mine.recibo.title": "ReciboDirecto — comprobantes de pago para prestadores de servicios",
+    "mine.recibo.context": "Aplicación web para que un prestador de servicios emita, entregue y conserve comprobantes de pago no fiscales y lleve el control de lo cobrado y lo pendiente. Su cliente no instala nada: abre una liga pública con su recibo.",
+    "mine.recibo.role": "Backend en FastAPI con plantillas Jinja2 y HTMX, PostgreSQL con SQLAlchemy async y Alembic, y PDF bajo demanda con WeasyPrint sobre Blob Storage. El cobro es una sola transacción atómica: selecciona o crea cliente y trabajo, registra el pago, asigna folio y congela el recibo, así que nunca queda un pago sin recibo ni al revés.",
+    "mine.recibo.outcome": "Siete hitos cerrados y más de 600 pruebas en verde, con integración contra Postgres y Azurite reales, idempotencia generada en el servidor contra el doble clic con mala señal, dinero siempre en centavos enteros y aislamiento por cuenta verificado recorriendo las rutas.",
+    "mine.recibo.repo": "Ver el repositorio",
+
+    "mine.pogo.client": "Proyecto personal · 2026",
+    "mine.pogo.title": "PoGo-Comunity-Agent — copiloto para una comunidad de Pokémon GO",
+    "mine.pogo.context": "Copiloto para los administradores de una comunidad local de Pokémon GO: a partir de una conversación arma paquetes listos para publicar, con el texto adaptado a cada canal, una imagen con la identidad de la comunidad y el archivo de calendario.",
+    "mine.pogo.role": "Agente sobre Microsoft Agent Framework con interfaz en Chainlit y tools de búsqueda web con Tavily, acotada a fuentes oficiales o abierta, y de pronóstico del clima con Open-Meteo. El historial vive en Postgres sobre Neon, las imágenes en Blob Storage con Managed Identity, y el acceso pasa por Google OAuth con una lista de correos autorizados.",
+    "mine.pogo.outcome": "En producción en Azure Container Apps, con infraestructura en Bicep y despliegue con GitHub Actions en cada push. El agente cita la fuente de cada dato de evento y se niega a inventar fechas que no puede verificar.",
+    "mine.pogo.repo": "Ver el repositorio",
+
     "mine.mexlex.client": "Proyecto personal · 2026",
     "mine.mexlex.title": "MexlexAgent — agente RAG sobre legislación mexicana",
     "mine.mexlex.context": "Agente conversacional para consultar leyes mexicanas y la Constitución, construido para llegar al fondo de LangChain y LangGraph sobre el ecosistema de Azure.",
@@ -138,6 +152,7 @@ var CONTENT = {
 
     "edu.title": "Formación",
     "edu.i1": "Ingeniería en Telemática — UPIITA, IPN",
+    "edu.i5": "Azure AI Apps and Agents Developer Associate (AI-103) — Microsoft",
     "edu.i2": "Azure AI Fundamentals — Microsoft",
     "edu.i3": "Machine Learning y Data Science — Udemy",
     "edu.i4": "AWS Cloud Practitioner — AWS Academy",
@@ -244,6 +259,20 @@ var CONTENT = {
     "proj.finsus.context": "Internal operations system for a financial institution, focused on generating account statements for several of its products.",
     "proj.finsus.role": "I built modules and extensions on PostgreSQL, FastAPI services for CRUD operations, and Pentaho ETLs to automate processes that used to be manual.",
 
+    "mine.recibo.client": "Personal project · 2026",
+    "mine.recibo.title": "ReciboDirecto — payment receipts for independent service providers",
+    "mine.recibo.context": "Web app that lets an independent service provider issue, deliver and keep non-tax payment receipts, and track what's been paid and what's still owed. Their customer installs nothing: they open a public link to their receipt.",
+    "mine.recibo.role": "FastAPI backend with Jinja2 templates and HTMX, PostgreSQL with async SQLAlchemy and Alembic, and on-demand PDFs with WeasyPrint on Blob Storage. Taking a payment is a single atomic transaction: it picks or creates the customer and the job, records the payment, assigns a receipt number and freezes the receipt, so there is never a payment without a receipt or the other way around.",
+    "mine.recibo.outcome": "Seven milestones done and over 600 passing tests, with integration tests against real Postgres and Azurite, server-generated idempotency keys against double taps on a bad connection, money always in integer cents, and per-account isolation checked by walking every route.",
+    "mine.recibo.repo": "View the repository",
+
+    "mine.pogo.client": "Personal project · 2026",
+    "mine.pogo.title": "PoGo-Comunity-Agent — a copilot for a Pokémon GO community",
+    "mine.pogo.context": "Copilot for the admins of a local Pokémon GO community: from a conversation it puts together ready-to-publish packages, with copy tailored to each channel, an image carrying the community's branding, and a calendar file.",
+    "mine.pogo.role": "Agent on Microsoft Agent Framework with a Chainlit interface, plus tools for Tavily web search (scoped to official sources or open) and Open-Meteo weather forecasts. History lives in Postgres on Neon, images in Blob Storage through Managed Identity, and access goes through Google OAuth with an email allowlist.",
+    "mine.pogo.outcome": "In production on Azure Container Apps, with infrastructure in Bicep and a GitHub Actions deploy on every push. The agent cites the source for every event detail and refuses to make up dates it can't verify.",
+    "mine.pogo.repo": "View the repository",
+
     "mine.mexlex.client": "Personal project · 2026",
     "mine.mexlex.title": "MexlexAgent — RAG agent over Mexican law",
     "mine.mexlex.context": "Conversational agent for querying Mexican law and the Constitution, built to get to the bottom of LangChain and LangGraph on the Azure stack.",
@@ -278,6 +307,7 @@ var CONTENT = {
 
     "edu.title": "Education",
     "edu.i1": "B.Eng. in Telematics — UPIITA, IPN",
+    "edu.i5": "Azure AI Apps and Agents Developer Associate (AI-103) — Microsoft",
     "edu.i2": "Azure AI Fundamentals — Microsoft",
     "edu.i3": "Machine Learning and Data Science — Udemy",
     "edu.i4": "AWS Cloud Practitioner — AWS Academy",
